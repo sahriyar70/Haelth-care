@@ -10,6 +10,20 @@ const createSpecialty = async (paylod : SpecialtyCreateInput): Promise <Specialt
     return specialty
 }
 
+const getAllSpecialty = async () : Promise<Specialty[]> =>{
+    const specialty = await prisma.specialty.findMany();
+    return specialty 
+}
+
+const deleteSpecialty = async (id: string) : Promise<Specialty> =>{
+    const specialty = await prisma.specialty.delete({
+        where :{id}
+    })
+    return specialty 
+}
+
 export const SpecialtyService = {
-    createSpecialty 
+    createSpecialty ,
+    getAllSpecialty ,
+    deleteSpecialty
 }
