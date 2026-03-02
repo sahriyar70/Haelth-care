@@ -6,5 +6,7 @@ const router = Router();
 router.post("/",SpecialtyController.createSpecialty)
 router.get("/",SpecialtyController.getAllSpecialty)
 router.delete("/:id",SpecialtyController.deleteSpecialty)
+router.patch("/:id",SpecialtyController.updateSpecialty)
+
 
 export const  SpecialtyRouter = router

@@ -65,8 +65,31 @@ const  deleteSpecialty = async (req:Request,res:Response) =>{
     }
 }
 
+const updateSpecialty = async (req: Request, res : Response) =>{
+    try {
+        const {id} = req.params 
+    const paylod = req.body 
+
+    const result = await SpecialtyService.updateSpecialty(id as string ,paylod)
+    
+        res.status(201).json({
+            success : true,
+            message : "specialty uopdate successfully",
+            data : result
+        })
+    } catch (error: any) {
+        console.log(error)
+        res.status(500).json({
+            success : false,
+            message : "Faild to update specialty",
+            error : error.message
+        })
+    }
+}
+
 export const SpecialtyController = {
     createSpecialty,
     getAllSpecialty,
-    deleteSpecialty
+    deleteSpecialty,
+    updateSpecialty
 }

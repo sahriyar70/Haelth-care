@@ -22,8 +22,25 @@ const deleteSpecialty = async (id: string) : Promise<Specialty> =>{
     return specialty 
 }
 
+const updateSpecialty = async ( id : string , paylod : Partial<Specialty>): Promise<Specialty> =>{
+    const isExist = await prisma.specialty.findUnique({
+        where : {id}
+    })
+
+    if (!isExist){
+        throw new Error ( " specialty not found")
+    }
+
+    const result = await prisma.specialty.update({
+        where :{id},
+        data : paylod
+    })
+    return result
+}
+
 export const SpecialtyService = {
     createSpecialty ,
     getAllSpecialty ,
-    deleteSpecialty
+    deleteSpecialty,
+    updateSpecialty
 }
