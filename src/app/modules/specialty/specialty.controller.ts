@@ -16,7 +16,7 @@ import { catchAsync } from "../../sheard/catchAsync";
 //     })
 //    }
 //     }
-// }
+/// }
 
 const createSpecialty = catchAsync (async (req : Request, res : Response) =>{
      const paylod = req.body 
