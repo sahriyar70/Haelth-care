@@ -1,6 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { SpecialtyService } from "./specialty.service";
 import { catchAsync } from "../../sheard/catchAsync";
+import { sendResponse } from "../../sheard/sendResponse";
 
 
 // const catchAsync = (fn : RequestHandler ) =>{
@@ -18,17 +19,18 @@ import { catchAsync } from "../../sheard/catchAsync";
 //     }
 /// }
 
+
+
 const createSpecialty = catchAsync (async (req : Request, res : Response) =>{
      const paylod = req.body 
     const result = await SpecialtyService.createSpecialty(paylod )
 
-    res.status(201).json({
+   sendResponse (res ,{
+        httpstatuscode :201,
         success : true,
         message : "specialty creat successfully",
         data : result 
-
-
-    })
+   })
 })
     
    
@@ -36,11 +38,12 @@ const createSpecialty = catchAsync (async (req : Request, res : Response) =>{
 const getAllSpecialty = catchAsync ( async (req : Request , res: Response  )=>{
     const specialty = await SpecialtyService. getAllSpecialty()
 
-       res.status(201).json({
-           succsess : true,
+       sendResponse (res,{
+        httpstatuscode:201,
+          success : true,
             message : "get all specialty",
            data : specialty
-      })
+       })
 } )
 
 // const getAllSpecialty = async (req:Request,res:Response) =>{
@@ -67,7 +70,8 @@ const  deleteSpecialty = catchAsync (async (req:Request,res:Response) =>{
     const {id} = req.params 
         const result= await SpecialtyService. deleteSpecialty(id as string)
 
-        res.status(201).json({
+        sendResponse (res,{
+            httpstatuscode:201,
             success : true,
             message : " delete specialty",
             data : result
@@ -80,8 +84,9 @@ const updateSpecialty = catchAsync( async (req: Request, res : Response) =>{
 
     const result = await SpecialtyService.updateSpecialty(id as string ,paylod)
     
-        res.status(201).json({
-            success : true,
+        sendResponse (res,{
+            httpstatuscode:201,
+             success : true,
             message : "specialty uopdate successfully",
             data : result
         })
