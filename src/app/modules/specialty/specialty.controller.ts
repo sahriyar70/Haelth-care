@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
-import { SpecialtyService } from "./specialty.service";
-import { catchAsync } from "../../sheard/catchAsync";
-import { sendResponse } from "../../sheard/sendResponse";
+import { catchAsync } from "../../sheard/catchAsync.js";
+import { SpecialtyService } from "./specialty.service.js";
+import { sendResponse } from "../../sheard/sendResponse.js";
 
 
 // const catchAsync = (fn : RequestHandler ) =>{
