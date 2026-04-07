@@ -1,9 +1,11 @@
 import express, { Application, Request, Response } from "express";
-import { prisma } from "./app/lib/prisma";
-import { time } from "node:console";
-import { title } from "node:process";
-import { SpecialtyRouter } from "./app/modules/specialty/specialty.route";
-import { IndexRouter } from "./app/router";
+import { IndexRouter } from "./app/router/index.js";
+import { prisma } from "./app/lib/prisma.js";
+import { globalErrorHandler } from "./midileware/grobalerrorhandlar.js";
+import { notFound } from "./midileware/notFound.js";
+
+
+
 
 const app: Application = express();
 
@@ -24,5 +26,9 @@ app.get("/", async (req: Request, res: Response) => {
     data : specialty
   })
 });
+
+app.use(globalErrorHandler);
+app.use(notFound);
+
 
 export default app;
